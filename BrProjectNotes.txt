@@ -15,6 +15,14 @@ Use below to see what was modified:
     git diff -- app.py
     git diff -- App_notes.md
 
+-------------------------------------------------
+
+GitHub
+
+    Create a new repository 'AiFinal'
+
+-------------------------------------------------
+
 GIT - initial steps.
 
 Terminal
@@ -53,7 +61,78 @@ Terminal
     nothing added to commit but untracked files present (use "git add" to track)
     master # %
 
-    GitHub
+    master # % git add .
+    master + % git status
+    On branch master
 
-        Create` a new repository 'AiFinal'
-    
+    No commits yet
+
+    Changes to be committed:
+      (use "git rm --cached <file>..." to unstage)
+        new file:   .gitignore
+        new file:   .idea/.gitignore
+        new file:   BrProjectNotes.txt
+        new file:   Image Classifier Part 2.md
+        new file:   pyvenv.cfg
+        new file:   src/get_run_type_args.py
+        new file:   src/train.py
+    master + %
+
+    master *+ % git status
+    On branch master
+
+    No commits yet
+
+    Changes to be committed:
+      (use "git rm --cached <file>..." to unstage)
+        new file:   .gitignore
+        new file:   .idea/.gitignore
+        new file:   BrProjectNotes.txt
+        new file:   Image Classifier Part 2.md
+        new file:   pyvenv.cfg
+        new file:   src/get_run_type_args.py
+        new file:   src/train.py
+
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git restore <file>..." to discard changes in working directory)
+        modified:   BrProjectNotes.txt
+
+    master *+ % git commit -m "first commit"
+    [master (root-commit) 91b0394] first commit
+     7 files changed, 211 insertions(+)
+     create mode 100644 .gitignore
+     create mode 100644 .idea/.gitignore
+     create mode 100644 BrProjectNotes.txt
+     create mode 100644 Image Classifier Part 2.md
+     create mode 100644 pyvenv.cfg
+     create mode 100644 src/get_run_type_args.py
+     create mode 100644 src/train.py
+
+     # copy the following 3 lines from GitHub. Paste and Hit Enter.
+
+    master * % git remote add origin https://github.com/brugienis/AiFinal.git
+    git branch -M main
+    git push -u origin main
+    fatal: remote origin already exists.
+    Enumerating objects: 11, done.
+    Counting objects: 100% (11/11), done.
+    Delta compression using up to 16 threads
+    Compressing objects: 100% (10/10), done.
+    Writing objects: 100% (11/11), 3.93 KiB | 1.96 MiB/s, done.
+    Total 11 (delta 0), reused 0 (delta 0)
+    To https://github.com/brugienis/AiFinal.git
+     * [new branch]      main -> main
+    Branch 'main' set up to track remote branch 'main' from 'origin'.
+    main * % git status
+    On branch main
+    Your branch is up to date with 'origin/main'.
+
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git restore <file>..." to discard changes in working directory)
+        modified:   BrProjectNotes.txt
+
+    no changes added to commit (use "git add" and/or "git commit -a")
+    main * %
+
