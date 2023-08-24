@@ -5,6 +5,10 @@ How to use Workspace:
 
 	https://www.youtube.com/watch?v=EQTttywUnXQ
 
+To run from terminal
+
+    cd /Users/bohdan/PycharmProjects/udacityAiFinal/src
+    python src/train.py
 
 Git 'push'
 
@@ -15,6 +19,12 @@ Use below to see what was modified:
     git diff -- app.py
     git diff -- App_notes.md
 
+-------------------------------------------------
+Start Jupyter
+
+    cd /Users/bohdan/Education/Udacity/AI_python_programming
+    pwd
+    jupyter notebook
 -------------------------------------------------
 
 GitHub

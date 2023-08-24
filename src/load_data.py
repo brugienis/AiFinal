@@ -2,10 +2,9 @@
 Load data to train, validate and test model.
 """
 
+import helper
 import torch
 from torchvision import datasets, transforms, models
-
-from src import helper
 
 
 def load_data():

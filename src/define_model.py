@@ -3,14 +3,14 @@ Define model.
 """
 from collections import OrderedDict
 
+import helper
 from torch import nn
 from torch import optim
-from src import helper
 from torchvision import models
 
 
-def define_model():
-    print(helper.get_formatted_time(), "define_model start")
+def define_model(learning_rate):
+    print(helper.get_formatted_time(), "define_model start", "learning_rate:", learning_rate)
     # model = models.resnet50(pretrained=True)
     model = models.densenet121(pretrained=True)
     # model = models.resnet101(pretrained=True)
@@ -33,7 +33,8 @@ def define_model():
     # print(model)
     criterion = nn.NLLLoss()
     # Only train the classifier parameters, feature parameters are frozen
-    optimizer = optim.Adam(model.classifier.parameters(), lr=0.003)
+    # optimizer = optim.Adam(model.classifier.parameters(), lr=0.003)
+    optimizer = optim.Adam(model.classifier.parameters(), lr=learning_rate)
     # optimizer = optim.Adam(model.fc.parameters(), lr=0.003)
     print(helper.get_formatted_time(), "define_model end")
     return model, criterion, optimizer, classifier_definition

@@ -3,9 +3,9 @@ Train_classifier.
 """
 
 import torch
-from torch import nn
+# from torch import nn
 
-from src.helper import get_formatted_time
+from helper import get_formatted_time
 
 
 def train_classifier(model, criterion, optimizer, train_loader, valid_loader, test_loader,
@@ -61,7 +61,7 @@ def train_classifier(model, criterion, optimizer, train_loader, valid_loader, te
                 accuracy = 0
                 model.eval()
                 #                 with torch.no_grad():
-                #                     for inputs, labels in validloader:
+                #                     for inputs, labels in valid_loader:
                 #                         inputs, labels = inputs.to(device), labels.to(device)
                 #                         logps = model.forward(inputs)
                 #                         batch_loss = criterion(logps, labels)

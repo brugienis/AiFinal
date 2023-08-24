@@ -26,14 +26,22 @@ Train a new network on a data set with train.py
         * Set hyperparameters: 
             python train.py data_dir --learning_rate 0.01 --hidden_units 512 --epochs 20 
             
-          * Use GPU for training: python train.py data_dir --gpu
+        * Use GPU for training: python train.py data_dir --gpu
 
 **2. Predict**
 
 Predict flower name from an image with predict.py along with the probability of that name. That is, you'll pass in a single image /path/to/image and return the flower name and class probability.
 
     Basic usage: python predict.py /path/to/image checkpoint
-    Options: * Return top K most likely classes: python predict.py input checkpoint --top_k 3 * Use a mapping of categories to real names: python predict.py input checkpoint --category_names cat_to_name.json * Use GPU for inference: python predict.py input checkpoint --gpu
+    
+    Options: 
+        * Return top K most likely classes: 
+            python predict.py input checkpoint --top_k 3 
+        * Use a mapping of categories to real names: 
+            python predict.py input checkpoint --category_names cat_to_name.json 
+        
+        * Use GPU for inference: 
+            python predict.py input checkpoint --gpu
 The best way to get the command line input into the scripts is with the argparse module in the standard library. You can also find a nice tutorial for argparse here.
 
     https://docs.python.org/3/library/argparse.html
