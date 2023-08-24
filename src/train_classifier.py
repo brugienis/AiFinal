@@ -1,8 +1,9 @@
-'''
+"""
 Train_classifier.
-'''
+"""
 
 import torch
+from torch import nn
 
 from src.helper import get_formatted_time
 

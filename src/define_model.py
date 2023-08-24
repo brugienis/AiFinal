@@ -36,4 +36,4 @@ def define_model():
     optimizer = optim.Adam(model.classifier.parameters(), lr=0.003)
     # optimizer = optim.Adam(model.fc.parameters(), lr=0.003)
     print(helper.get_formatted_time(), "define_model end")
-    return model, criterion, optimizer
+    return model, criterion, optimizer, classifier_definition

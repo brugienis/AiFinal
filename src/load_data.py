@@ -41,4 +41,4 @@ def load_data():
     test_loader = torch.utils.data.DataLoader(test_data, batch_size=64)
     print("load done")
     print(helper.get_formatted_time(), "load_data end")
-    return train_loader, valid_loader, test_loader
+    return train_loader, valid_loader, test_loader, train_data.class_to_idx

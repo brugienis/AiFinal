@@ -114,6 +114,7 @@ Terminal
     master * % git remote add origin https://github.com/brugienis/AiFinal.git
     git branch -M main
     git push -u origin main
+
     fatal: remote origin already exists.
     Enumerating objects: 11, done.
     Counting objects: 100% (11/11), done.
