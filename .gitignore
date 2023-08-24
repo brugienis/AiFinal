@@ -40,3 +40,6 @@ nosetests.xml
 
 # Virtual environment
 venv
+# Models training data 363.6 MB
+src/flowers
+share
