@@ -43,3 +43,4 @@ venv
 # Models training data 363.6 MB
 src/flowers
 share
+final_project_checkpoint.pth
