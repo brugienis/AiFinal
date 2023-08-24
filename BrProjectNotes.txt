@@ -1,0 +1,59 @@
+cd /Users/bohdan/PycharmProjects/udacityAiFinal
+
+
+How to use Workspace:
+
+	https://www.youtube.com/watch?v=EQTttywUnXQ
+
+
+Git 'push'
+
+    git push -u origin
+
+Use below to see what was modified:
+
+    git diff -- app.py
+    git diff -- App_notes.md
+
+GIT - initial steps.
+
+Terminal
+
+    Last login: Thu Aug 24 09:48:44 on ttys001
+     % cd /Users/bohdan/PycharmProjects/udacityAiFinal
+     % pwd
+    /Users/bohdan/PycharmProjects/udacityAiFinal
+     % git init
+
+    Initialized empty Git repository in /Users/bohdan/PycharmProjects/udacityAiFinal/.git/
+
+    master # % git status
+    On branch master
+
+    No commits yet
+
+    nothing to commit (create/copy files and use "git add" to track)
+
+    master # %The '.gitignore' was empty - I copied the contents from 'Timeline_backend' project.
+
+    master # % git status
+    On branch master
+
+    No commits yet
+
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+        .gitignore
+        .idea/
+        BrProjectNotes.txt
+        Image Classifier Part 2.md
+        pyvenv.cfg
+        src/
+
+    nothing added to commit but untracked files present (use "git add" to track)
+    master # %
+
+    GitHub
+
+        Create` a new repository 'AiFinal'
+    
