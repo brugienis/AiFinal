@@ -16,11 +16,13 @@ def get_run_type_args(args_for_class):
         parser.add_argument('--epochs', type=int, default='2',
                             help='number of epochs')
     else:
-        parser.add_argument('--image_path', type=str,
+        parser.add_argument('--image_path', type=str, default='flowers/test/2/image_05133.jpg',
                             help='path to image')
         parser.add_argument('--checkpoint_dir', type=str, default='checkpoints',
                             help='path to checkpoint folder')
-        parser.add_argument('--top_k', default='3',
+        parser.add_argument('----category_names', type=str, default='cat_to_name.json',
+                            help='category to name JSON file')
+        parser.add_argument('--top_k', type=int, default='3',
                             help='return top K classes')
 
     return parser.parse_args()

@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import helper
 import torch
 
 
@@ -8,6 +9,7 @@ def validate_test_data(model, test_loader, device):
     Test network.
     '''
 
+    print(helper.get_formatted_time(), "validate_test_data start")
     if device != 'cuda':
         print("\n*** validate_test_data: running on CPU not GPU - processing will take a long time ***\n")
     else:
@@ -31,5 +33,6 @@ def validate_test_data(model, test_loader, device):
 
     print(f"Test accuracy: {accuracy / len(test_loader):.3f}")
     now = datetime.now()  # current date and time
+    print(helper.get_formatted_time(), "validate_test_data end")
     time = now.strftime("%H:%M:%S")
     print("End test time:", time)

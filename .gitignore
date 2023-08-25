@@ -44,3 +44,4 @@ venv
 src/flowers
 share
 final_project_checkpoint.pth
+cat_to_name.json
