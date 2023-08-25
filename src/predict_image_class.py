@@ -23,7 +23,4 @@ def predict_image_class(image_path, model, topk=5):
 
     top_classes = [idx_to_class[x] for x in top_classes_list]
 
-    # image_cat = get_image_category(run_type_args.image_path)
-    print()
-
     return top_prob_array, top_classes
