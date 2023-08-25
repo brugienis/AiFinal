@@ -13,13 +13,11 @@ from validate_test_data import validate_test_data
 def main():
     print(helper.get_formatted_time(), "Train app start")
     run_type_args = get_run_type_args('train')
-    print("save_dir:", run_type_args.save_dir)
-    print("epochs:", run_type_args.epochs)
     print(run_type_args)
     train_loader, valid_loader, test_loader, class_to_idx = load_data()
-    model, criterion, optimizer, classifier_definition = define_model(run_type_args.learning_rate)
-    model, epochs = train_classifier(model, criterion, optimizer, train_loader, valid_loader, test_loader,
-                                     device_to_use='cpu', epochs=run_type_args.epochs)
+    model, criterion, optimizer, classifier_definition = define_model(run_type_args.arch ,run_type_args.learning_rate)
+    model, epochs = train_classifier(model, criterion, optimizer, train_loader, valid_loader, run_type_args.epochs,
+                                     run_on_gpu=False)
     validate_test_data(model, test_loader, 'cpu')
 
     model.class_to_idx = class_to_idx
