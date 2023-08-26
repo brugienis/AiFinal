@@ -30,42 +30,26 @@ def define_model(model_architecture, learning_rate):
 
     if model_architecture == "densenet":
         model = models.densenet121(pretrained=True)
-        # model.classifier = nn.Sequential(classifier_definition)
-    elif model_architecture == "vgg":
-        model = models.vgg16(pretrained=True)
-    elif model_architecture == "alexnet":
-        model = models.densenet121(pretrained=True)
     elif model_architecture == "resnet":
         model = models.resnet101(pretrained=True)
     else:
         # TODO: Stop processing at that point
         print("define_model - NO CODE TO HANDLE model_architecture:", model_architecture)
 
-    # model = models.resnet50(pretrained=True)
-    # model = models.densenet121(pretrained=True)
-    # model = models.resnet101(pretrained=True)
-    # model
-
-    # print("model after replacing the classifier:", model)
     # Freeze parameters so we don't backprop through them
-
     for param in model.parameters():
         param.requires_grad = False
 
     if model_architecture == "resnet":
         model.fc = nn.Sequential(classifier_definition_2048)
+        # Only train the classifier parameters, feature parameters are frozen
         optimizer = optim.Adam(model.fc.parameters(), lr=learning_rate)
     else:
         model.classifier = nn.Sequential(classifier_definition)
+        # Only train the classifier parameters, feature parameters are frozen
         optimizer = optim.Adam(model.classifier.parameters(), lr=learning_rate)
-    # print(model)
+    print("final model", model)
     criterion = nn.NLLLoss()
-    # Only train the classifier parameters, feature parameters are frozen
-    # optimizer = optim.Adam(model.classifier.parameters(), lr=0.003)
-    # optimizer = optim.Adam(model.classifier.parameters(), lr=learning_rate)
-    # optimizer = optim.Adam(model.fc.parameters(), lr=0.003)
+
     print(helper.get_formatted_time(), "define_model end")
-    # return model, criterion, optimizer, classifier_definition
-    age = 17
-    adult = "Yes" if age >= 18 else "No"
     return model, criterion, optimizer, classifier_definition_2048 if model_architecture else classifier_definition
