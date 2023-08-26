@@ -14,7 +14,7 @@ def predict():
     print(helper.get_formatted_time(), "Predict app start")
     run_type_args = get_run_type_args('predict')
     print(run_type_args)
-    run_type_args = get_run_type_args('predict')
+    # run_type_args = get_run_type_args('predict')
     if run_type_args.image_path == None:
         print("Image path missing")
     train_loader, valid_loader, test_loader, class_to_idx = load_data()

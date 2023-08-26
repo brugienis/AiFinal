@@ -4,11 +4,11 @@ Save checkpoint.
 import torch
 
 
-def save_checkpoint(model, classifier_definition, optimizer, class_to_idx, epochs, checkpoint_name):
+def save_checkpoint(architecture, model, classifier_definition, optimizer, class_to_idx, epochs, checkpoint_name):
     checkpoint = {
-        'architecture': 'densenet121',
+        'architecture': architecture,
         'classifier_definition': classifier_definition,
-        'classifier': model.classifier,
+        # 'classifier': model.classifier,
         'state_dict': model.state_dict(),
         # 'class_to_idx': model.class_to_idx,
         'class_to_idx': class_to_idx,

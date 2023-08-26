@@ -7,7 +7,7 @@ def get_run_type_args(args_for_class):
     if args_for_class == 'train':
         parser.add_argument('--save_dir', type=str, default='checkpoints',
                             help='path to folder of checkpoints')
-        parser.add_argument('--arch', default='vgg', choices=['vgg', 'alexnet', 'resnet'],
+        parser.add_argument('--arch', default='resnet', choices=['vgg', 'densenet', 'resnet'],
                             help='the CNN model architecture')
         parser.add_argument('--learning_rate', type=float, default='0.001',
                             help='learning rate')
@@ -26,11 +26,11 @@ def get_run_type_args(args_for_class):
                             help='return top K classes')
 
     args = parser.parse_args()
-    print("-"*50)
+    print("-" * 50)
     print("                Run time params")
     for arg in vars(args):
         arg_value = getattr(args, arg)
         # print(arg, arg_value)
         print("{:30}: {}".format(arg, arg_value))
-    print("-"*50)
+    print("-" * 50)
     return parser.parse_args()

@@ -3,16 +3,11 @@ Train_classifier.
 """
 
 import torch
-# from torch import nn
-
 from helper import get_formatted_time
 
 
 def train_classifier(model, criterion, optimizer, train_loader, valid_loader,
                      epochs, run_on_gpu):
-    '''
-    Train model's classifier.
-    '''
 
     if run_on_gpu and torch.cuda.is_available():
         device = torch.device("cuda")
