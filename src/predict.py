@@ -15,8 +15,8 @@ def predict():
     run_type_args = get_run_type_args('predict')
     print(run_type_args)
     # run_type_args = get_run_type_args('predict')
-    if run_type_args.image_path == None:
-        print("Image path missing")
+    # if run_type_args.image_path == None:
+    #     print("Image path missing")
     train_loader, valid_loader, test_loader, class_to_idx = load_data()
     model = load_saved_checkpoint('final_project_checkpoint.pth')
     # validate_test_data(model, test_loader, 'cpu')
