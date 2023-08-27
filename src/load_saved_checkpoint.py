@@ -1,6 +1,8 @@
 """
 Load model from the checkpoint file.
 """
+import os
+
 import helper
 import torch
 from torch import nn
@@ -8,10 +10,12 @@ from torch import optim
 from torchvision import models
 
 
-def load_saved_checkpoint(checkpoint_name):
+def load_saved_checkpoint(save_dir, checkpoint_name):
     print(helper.get_formatted_time(), "load_saved_checkpoint start", "checkpoint name", checkpoint_name)
 
-    checkpoint = torch.load('final_project_checkpoint.pth')
+    # checkpoint = torch.load('final_project_checkpoint.pth')
+    checkpoint = torch.load(os.path.join(save_dir, checkpoint_name))
+
     architecture = checkpoint['architecture']
     print("load_saved_checkpoint architecture: ", architecture)
 
