@@ -4,7 +4,8 @@ Save checkpoint.
 import torch
 
 
-def save_checkpoint(architecture, model, classifier_definition, optimizer, class_to_idx, epochs, checkpoint_name):
+def save_checkpoint(architecture, model, classifier_definition, optimizer, class_to_idx, epochs, learning_rate,
+                    checkpoint_name):
     checkpoint = {
         'architecture': architecture,
         'classifier_definition': classifier_definition,
@@ -13,6 +14,7 @@ def save_checkpoint(architecture, model, classifier_definition, optimizer, class
         # 'class_to_idx': model.class_to_idx,
         'class_to_idx': class_to_idx,
         'optimizer_state': optimizer.state_dict(),
-        'training_epochs': epochs
+        'training_epochs': epochs,
+        'learning_rate': learning_rate
     }
     torch.save(checkpoint, checkpoint_name)

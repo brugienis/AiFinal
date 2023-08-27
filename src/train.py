@@ -25,7 +25,8 @@ def main():
                         run_on_gpu=False)
     validate_test_data(model, test_loader, 'cpu')
     model.class_to_idx = class_to_idx
-    save_checkpoint(run_type_args.arch, model, classifier_definition, optimizer, class_to_idx, run_type_args.epochs, 'final_project_checkpoint.pth')
+    save_checkpoint(run_type_args.arch, model, classifier_definition, optimizer, class_to_idx, run_type_args.epochs,
+                    run_type_args.learning_rate, 'final_project_checkpoint.pth')
     print(helper.get_formatted_time(), "Train app end")
 
 
