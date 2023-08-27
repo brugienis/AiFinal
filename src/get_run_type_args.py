@@ -7,13 +7,13 @@ def get_run_type_args(args_for_class):
     if args_for_class == 'train':
         parser.add_argument('--save_dir', type=str, default='checkpoints',
                             help='path to folder of checkpoints')
-        parser.add_argument('--arch', default='densenet', choices=['densenet', 'resnet'],
+        parser.add_argument('--arch', default='resnet', choices=['densenet', 'resnet'],
                             help='the CNN model architecture')
         parser.add_argument('--learning_rate', type=float, default='0.001',
                             help='learning rate')
         parser.add_argument('--hidden_units', default='3',
                             help='number of hidden units')
-        parser.add_argument('--epochs', type=int, default='2',
+        parser.add_argument('--epochs', type=int, default='1',
                             help='number of epochs')
     else:
         parser.add_argument('--image_path', type=str, default='flowers/test/2/image_05133.jpg',
