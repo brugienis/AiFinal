@@ -15,6 +15,7 @@ def define_model(model_architecture, hidden_units, learning_rate):
     :return: model with classifier layer redefined
     """
 
+    print(helper.get_formatted_time(), "define_model start")
     features_layer_size = 0
     model = None
     if model_architecture == "densenet":
@@ -38,4 +39,5 @@ def define_model(model_architecture, hidden_units, learning_rate):
 
     criterion = nn.NLLLoss()
 
+    print(helper.get_formatted_time(), "define_model end")
     return model, criterion, optimizer, classifier_definition

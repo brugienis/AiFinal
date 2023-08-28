@@ -8,9 +8,9 @@ def validate_test_data(model, test_loader, run_on_gpu):
     """
     Test the model.
 
+    :param run_on_gpu: boolean
     :param model:
     :param test_loader: The test data loader.
-    :param device:
     """
 
     # Move the model to the GPU if available.

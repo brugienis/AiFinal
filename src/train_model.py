@@ -1,5 +1,6 @@
 import torch
 from helper import get_formatted_time
+import helper
 
 
 def train_model(model, criterion, optimizer, train_loader, valid_loader, epochs, run_on_gpu):
@@ -16,11 +17,14 @@ def train_model(model, criterion, optimizer, train_loader, valid_loader, epochs,
     :return: The trained model.
     """
 
+    print(helper.get_formatted_time(), "train_model start. run_on_gpu:", run_on_gpu)
     # Move the model to the GPU if available.
     if run_on_gpu and torch.cuda.is_available():
+        print(helper.get_formatted_time(), "train_model before: device = torch.device('cuda')")
         device = torch.device("cuda")
+        print(helper.get_formatted_time(), "train_model before: model.to(device)")
         model.to(device)
-        print("GPU is available and being used")
+        print(helper.get_formatted_time(), "GPU is available and being used")
     else:
         device = torch.device("cpu")
         if run_on_gpu:
@@ -77,4 +81,5 @@ def train_model(model, criterion, optimizer, train_loader, valid_loader, epochs,
     device = torch.device("cpu")
     model.to(device)
     print(f"{get_formatted_time()} End training time:")
+    print(helper.get_formatted_time(), "train_model end")
     return model

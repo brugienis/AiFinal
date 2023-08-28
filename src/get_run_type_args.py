@@ -31,7 +31,7 @@ def get_run_type_args(args_for_class):
 
     parser.add_argument('--save_dir', type=str, default='checkpoints',
                         help='path to folder of checkpoints')
-    parser.add_argument('--gpu', default='No', action='store_true', help='utilize GPU')
+    parser.add_argument('--gpu', default='Yes', action='store_true', help='utilize GPU')
     args = parser.parse_args()
     print("-" * 50)
     print("                Run time params")
