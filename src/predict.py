@@ -7,10 +7,10 @@ from print_report import print_report
 from validate_test_data import validate_test_data
 
 
-# from src.predict import main
-
-
 def predict():
+    """
+    Get predictions for the image specified in the argument 'image_path'.
+    """
     print(helper.get_formatted_time(), "Predict app start")
     run_type_args, checkpoint_file_name = get_run_type_args('predict')
     print(run_type_args)
@@ -24,6 +24,7 @@ def predict():
     top_prob_array, top_classes = predict_image_class(run_type_args.image_path, model, topk=run_type_args.top_k)
     print_report(run_type_args.image_path, top_prob_array, top_classes)
     print(helper.get_formatted_time(), "Predict app end")
+
 
 if __name__ == "__main__":
     predict()

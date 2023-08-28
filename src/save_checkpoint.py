@@ -9,6 +9,19 @@ import torch
 # TODO pass folder for checkpoint and save checkpoint in it
 def save_checkpoint(architecture, model, classifier_definition, optimizer, class_to_idx, epochs, learning_rate,
                     save_dir, checkpoint_name):
+    """
+
+    :param architecture:
+    :param model:
+    :param classifier_definition:
+    :param optimizer:
+    :param class_to_idx:
+    :param epochs:
+    :param learning_rate:
+    :param save_dir:
+    :param checkpoint_name:
+    :return:
+    """
     checkpoint = {
         'architecture': architecture,
         'classifier_definition': classifier_definition,

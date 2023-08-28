@@ -1,86 +1,41 @@
-"""
-Define model.
-"""
-from collections import OrderedDict
 import helper
 from torch import nn
 from torch import optim
 from torchvision import models
-
-from build_hidden_layers import build_hidden_layers
+from get_classifier_definition import get_classifier_definition
 
 
 def define_model(model_architecture, hidden_units, learning_rate):
-    print(helper.get_formatted_time(), "define_model start", "model_architecture:", model_architecture,
-          "learning_rate:",
-          learning_rate)
+    """
+    Define model.
 
-    c_new = OrderedDict([
-        ('fc1', nn.Linear(1024, 256)),  # Input layer
-        ('relu1', nn.ReLU()),  # Activation function
-        ('drop1', nn.Dropout(0.2))
-    ])
-    for i in range(hidden_units):
-        c_new['hidden' + str(i + 1)] = nn.Linear(256, 256)
-        c_new['hrelu' + str(i + 1)] = nn.ReLU()
-        if i != hidden_units - 1: c_new['hdrop' + str(i + 1)] = nn.Dropout(0.2)
-    c_new['fc2'] = nn.Linear(256, 1000)
-    c_new['output'] = nn.LogSoftmax(dim=1)
-    print("c_new:", c_new)
+    :param model_architecture:
+    :param hidden_units:
+    :param learning_rate:
+    :return: model with classifier layer redefined
+    """
 
-    # classifier_definition = OrderedDict([
-    #     ('fc1', nn.Linear(1024, 256)),
-    #     ('relu', nn.ReLU()),
-    #     ('drop', nn.Dropout(0.2)),
-    #     ('fc2', nn.Linear(256, 1000)),
-    #     ('output', nn.LogSoftmax(dim=1))
-    # ])
-    # Define the new classifier structure
-    # todo 'fc2' change 100 to 102
-    classifier_definition = OrderedDict([
-        ('fc1', nn.Linear(1024, 256)),  # Input layer
-        ('relu1', nn.ReLU()),  # Activation function
-        ('drop1', nn.Dropout(0.2)),
-        ('hidden1', nn.Linear(256, 256)),  # First hidden layer
-        ('hrelu1', nn.ReLU()),  # Activation function
-        ('hdrop1', nn.Dropout(0.2)),
-        ('hidden2', nn.Linear(256, 256)),  # Second hidden layer
-        ('hrelu2', nn.ReLU()),  # Activation function
-        ('fc2', nn.Linear(256, 1000)),  # Output layer
-        ('output', nn.LogSoftmax(dim=1))
-    ])
-    classifier_definition_2048 = OrderedDict([
-        ('fc1', nn.Linear(2048, 256)),
-        ('relu', nn.ReLU()),
-        ('drop', nn.Dropout(0.2)),
-        ('fc2', nn.Linear(256, 1000)),
-        ('output', nn.LogSoftmax(dim=1))
-    ])
-
+    features_layer_size = 0
+    model = None
     if model_architecture == "densenet":
         model = models.densenet121(pretrained=True)
+        features_layer_size = 1024
     elif model_architecture == "resnet":
         model = models.resnet101(pretrained=True)
-    else:
-        # TODO: Stop processing at that point
-        print("define_model - NO CODE TO HANDLE model_architecture:", model_architecture)
+        features_layer_size = 2048
 
     # Freeze parameters so we don't backprop through them
     for param in model.parameters():
         param.requires_grad = False
 
+    classifier_definition = get_classifier_definition(features_layer_size, hidden_units)
     if model_architecture == "resnet":
-        model.fc = nn.Sequential(classifier_definition_2048)
-        # Only train the classifier parameters, feature parameters are frozen
+        model.fc = nn.Sequential(classifier_definition)
         optimizer = optim.Adam(model.fc.parameters(), lr=learning_rate)
     else:
-        # model.classifier = nn.Sequential(classifier_definition)
-        model.classifier = nn.Sequential(c_new)
-        # Only train the classifier parameters, feature parameters are frozen
+        model.classifier = nn.Sequential(classifier_definition)
         optimizer = optim.Adam(model.classifier.parameters(), lr=learning_rate)
-    # print("final model", model)
+
     criterion = nn.NLLLoss()
 
-    print(helper.get_formatted_time(), "define_model end")
-    return model, criterion, optimizer, \
-        classifier_definition_2048 if model_architecture == "resnet" else classifier_definition
+    return model, criterion, optimizer, classifier_definition

@@ -2,6 +2,11 @@ import argparse
 
 
 def get_run_type_args(args_for_class):
+    """
+
+    :param args_for_class:
+    :return:
+    """
     parser = argparse.ArgumentParser()
 
     if args_for_class == 'train':
