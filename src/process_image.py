@@ -3,9 +3,11 @@ from PIL import Image
 
 
 def process_image(image):
-    ''' Scales, crops, and normalizes a PIL image for a PyTorch model,
-        returns a Numpy array
-    '''
+    """
+    Scales, crops, and normalizes a PIL image for a PyTorch model.
+    :param image:
+    :return: array
+    """
     img_pil = Image.open(image)
     preprocess = transforms.Compose([
         transforms.Resize(256),

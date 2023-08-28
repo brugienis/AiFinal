@@ -9,7 +9,7 @@ from validate_test_data import validate_test_data
 
 def predict():
     """
-    Get predictions for the image specified in the argument 'image_path'.
+    Get prediction details for the image specified in the argument 'image_path'.
     """
     print(helper.get_formatted_time(), "Predict app start")
     run_type_args, checkpoint_file_name = get_run_type_args('predict')

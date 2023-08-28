@@ -4,20 +4,28 @@ import helper
 import torch
 
 
-def validate_test_data(model, test_loader, device):
-    '''
-    Test network.
-    '''
+def validate_test_data(model, test_loader, run_on_gpu):
+    """
+    Test the model.
 
-    print(helper.get_formatted_time(), "validate_test_data start")
-    if device != 'cuda':
-        print("\n*** validate_test_data: running on CPU not GPU - processing will take a long time ***\n")
+    :param model:
+    :param test_loader: The test data loader.
+    :param device:
+    """
+
+    # Move the model to the GPU if available.
+    if run_on_gpu and torch.cuda.is_available():
+        device = torch.device("cuda")
+        model.to(device)
+        print("GPU is available and being used")
     else:
-        print("\n*** validate_test_data: running on GPU ***\n")
+        device = torch.device("cpu")
+        if run_on_gpu:
+            print("GPU is not available, using CPU instead")
+        else:
+            print("using CPU as requested")
 
-    now = datetime.now()  # current date and time
-    time = now.strftime("%H:%M:%S")
-    print("Start test time:", time)
+    print("Start test time:", helper.get_formatted_time())
 
     model.to(device)
     accuracy = 0
@@ -32,7 +40,5 @@ def validate_test_data(model, test_loader, device):
             accuracy += torch.mean(equals.type(torch.FloatTensor)).item()
 
     print(f"Test accuracy: {accuracy / len(test_loader):.3f}")
-    now = datetime.now()  # current date and time
-    print(helper.get_formatted_time(), "validate_test_data end")
-    time = now.strftime("%H:%M:%S")
-    print("End test time:", time)
+
+    print("End test time:", helper.get_formatted_time())

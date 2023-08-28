@@ -11,9 +11,15 @@ from torchvision import models
 
 
 def load_saved_checkpoint(save_dir, checkpoint_name):
+    """
+    Load model and other details from a 'checkpoint' file.
+
+    :param save_dir:
+    :param checkpoint_name:
+    :rtype: model
+    """
     print(helper.get_formatted_time(), "load_saved_checkpoint start", "checkpoint name", checkpoint_name)
 
-    # checkpoint = torch.load('final_project_checkpoint.pth')
     checkpoint = torch.load(os.path.join(save_dir, checkpoint_name))
 
     architecture = checkpoint['architecture']
@@ -35,7 +41,7 @@ def load_saved_checkpoint(save_dir, checkpoint_name):
 
     optimizer.load_state_dict(checkpoint['optimizer_state'])
 
-    epochs = checkpoint['training_epochs']
+    # epochs = checkpoint['training_epochs']
 
     # return other variables if required in the future
     print(helper.get_formatted_time(), "load_saved_checkpoint end")

@@ -1,15 +1,12 @@
-"""
-Save checkpoint.
-"""
 import os
 
 import torch
 
 
-# TODO pass folder for checkpoint and save checkpoint in it
 def save_checkpoint(architecture, model, classifier_definition, optimizer, class_to_idx, epochs, learning_rate,
                     save_dir, checkpoint_name):
     """
+    Save checkpoint file containing model and other objects.
 
     :param architecture:
     :param model:
@@ -20,7 +17,6 @@ def save_checkpoint(architecture, model, classifier_definition, optimizer, class
     :param learning_rate:
     :param save_dir:
     :param checkpoint_name:
-    :return:
     """
     checkpoint = {
         'architecture': architecture,
@@ -32,9 +28,6 @@ def save_checkpoint(architecture, model, classifier_definition, optimizer, class
         'learning_rate': learning_rate
     }
 
-    # isExist = os.path.exists(save_dir)
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
-    # model_label = classifier(os.path.join(images_dir, key), model)
-    # torch.save(checkpoint, checkpoint_name)
     torch.save(checkpoint, os.path.join(save_dir, checkpoint_name))

@@ -9,9 +9,9 @@ def define_model(model_architecture, hidden_units, learning_rate):
     """
     Define model.
 
-    :param model_architecture:
-    :param hidden_units:
-    :param learning_rate:
+    :param model_architecture: pre-trained model name
+    :param hidden_units: int
+    :param learning_rate: float
     :return: model with classifier layer redefined
     """
 

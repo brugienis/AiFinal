@@ -6,16 +6,14 @@ def train_model(model, criterion, optimizer, train_loader, valid_loader, epochs,
     """
     Train a model on a dataset.
 
-    Args:
-        model: The model to train.
-        criterion: The loss function.
-        optimizer: The optimizer.
-        train_loader: The training data loader.
-        valid_loader: The validation data loader.
-        epochs: The number of epochs to train for.
-
-    Returns:
-        The trained model.
+    :param model: The model to train.
+    :param criterion: The loss function.
+    :param optimizer: The optimizer.
+    :param train_loader: The training data loader.
+    :param valid_loader: The validation data loader.
+    :param epochs: The number of epochs to train for.
+    :param run_on_gpu: If true, process function on GPU
+    :return: The trained model.
     """
 
     # Move the model to the GPU if available.
@@ -25,7 +23,10 @@ def train_model(model, criterion, optimizer, train_loader, valid_loader, epochs,
         print("GPU is available and being used")
     else:
         device = torch.device("cpu")
-        print("GPU is not available, using CPU instead")
+        if run_on_gpu:
+            print("GPU is not available, using CPU instead")
+        else:
+            print("using CPU as requested")
 
     print("\n*** train_model: epochs: {} ***\n".format(epochs))
 
@@ -52,7 +53,7 @@ def train_model(model, criterion, optimizer, train_loader, valid_loader, epochs,
             running_loss += loss.item()
 
         # Evaluate the model on the validation set
-        print(f" {get_formatted_time()} validation start")
+        print(f"{get_formatted_time()} validation start")
         model.eval()
         with torch.no_grad():
             val_loss = 0
@@ -73,5 +74,7 @@ def train_model(model, criterion, optimizer, train_loader, valid_loader, epochs,
               f"Validation loss: {val_loss / len(valid_loader):.3f}")
         print(f"Validation accuracy: {val_accuracy / len(valid_loader):.3f}")
 
+    device = torch.device("cpu")
+    model.to(device)
     print(f"{get_formatted_time()} End training time:")
     return model

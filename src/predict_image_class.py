@@ -4,9 +4,14 @@ from process_image import process_image
 
 
 def predict_image_class(image_path, model, topk=5):
-    '''
-    Predict the class from an image file
-    '''
+    """
+    Predict the class from an image file.
+
+    :param image_path:
+    :param model:
+    :param topk:
+    :return: top K probabilities and classes
+    """
 
     model.eval()
     img_tensor = process_image(image_path)

@@ -38,8 +38,7 @@ def get_run_type_args(args_for_class):
     for arg in vars(args):
         arg_value = getattr(args, arg)
         if arg == "gpu":
-            arg_value = "No" if arg_value == "No" else "Yes"
-        # print(arg, arg_value)
+            arg_value = False if arg_value == "No" else True
         print("{:30}: {}".format(arg, arg_value))
     print("-" * 50)
     checkpoint_file_name = "final_project_checkpoint.pth"
